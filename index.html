@@ -196,9 +196,9 @@
     z-index: 20;
   }
 
-  .video-modal video {
-    max-width: 90%;
-    max-height: 80%;
+  iframe {
+    width: 80%;
+    height: 80%;
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(255,255,255,0.3);
   }
@@ -228,13 +228,12 @@
   <audio id="musica" loop>
     <source src="musica.m4a" type="audio/mp4">
   </audio>
+
   <button class="video-btn">▶️</button>
+
   <div class="video-modal" id="videoModal">
     <button class="close-btn">✖</button>
-    <video id="videoPlayer" controls>
-      <source src="https://drive.google.com/uc?export=download&id=1lsRzkZXlbSEGG5Egwiv5iZEfXC_45gew" type="video/mp4">
-      Tu navegador no soporta video.
-    </video>
+    <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
   </div>
 
   <script>
@@ -291,17 +290,15 @@
     const videoPlayer = document.getElementById('videoPlayer');
     const closeBtn = document.querySelector('.close-btn');
 
-    // 🔹 Se detiene la música al abrir el video
     videoBtn.addEventListener('click', () => {
       musica.pause();
       videoModal.style.display = 'flex';
-      videoPlayer.currentTime = 0;
-      videoPlayer.play();
+      videoPlayer.src = "https://www.youtube.com/embed/pGfTPK24sDU?autoplay=1";
     });
 
     closeBtn.addEventListener('click', () => {
       videoModal.style.display = 'none';
-      videoPlayer.pause();
+      videoPlayer.src = "";
     });
   </script>
 </body>
