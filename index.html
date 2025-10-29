@@ -232,7 +232,7 @@
   <div class="video-modal" id="videoModal">
     <button class="close-btn">✖</button>
     <video id="videoPlayer" controls>
-      <source src="Mar.mp4" type="video/mp4">
+      <source src="https://drive.google.com/uc?export=download&id=1lsRzkZXlbSEGG5Egwiv5iZEfXC_45gew" type="video/mp4">
       Tu navegador no soporta video.
     </video>
   </div>
@@ -291,6 +291,7 @@
     const videoPlayer = document.getElementById('videoPlayer');
     const closeBtn = document.querySelector('.close-btn');
 
+    // 🔹 Se detiene la música al abrir el video
     videoBtn.addEventListener('click', () => {
       musica.pause();
       videoModal.style.display = 'flex';
@@ -305,4 +306,3 @@
   </script>
 </body>
 </html>
-
