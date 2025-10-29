@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Te quiero como no te imaginas💖</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('imgfondo.jpeg') no-repeat center/cover;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .heart {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: #ff6b9a;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s;
+    box-shadow: 0 0 20px rgba(255, 107, 154, 0.5);
+  }
+
+  .heart::before,
+  .heart::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: #ff6b9a;
+    border-radius: 50%;
+  }
+
+  .heart::before { top: -60px; left: 0; }
+  .heart::after { left: 60px; top: 0; }
+
+  #center::before,
+  #center::after {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: #ff6b9a;
+    border-radius: 50%;
+  }
+  #center::before { top: -90px; left: 0; }
+  #center::after { left: 90px; top: 0; }
+
+  .heart:hover {
+    transform: rotate(-45deg) scale(1.1);
+    opacity: 0.9;
+  }
+
+  #center {
+    z-index: 3;
+    width: 180px;
+    height: 180px;
+    background: #ff6b9a;
+    transform: rotate(-45deg);
+    animation: latido 1.5s infinite ease-in-out;
+  }
+
+  #top {
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(-45deg) scale(0.8);
+  }
+
+  #bottom {
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(-45deg) scale(0.8);
+  }
+
+  #left {
+    left: 10%;
+    top: 50%;
+    transform: translate(0, -50%) rotate(-45deg) scale(0.8);
+  }
+
+  #right {
+    right: 10%;
+    top: 50%;
+    transform: translate(0, -50%) rotate(-45deg) scale(0.8);
+  }
+
+  @keyframes latido {
+    0%, 100% { transform: rotate(-45deg) scale(1); }
+    25% { transform: rotate(-45deg) scale(1.1); }
+    50% { transform: rotate(-45deg) scale(0.95); }
+    75% { transform: rotate(-45deg) scale(1.1); }
+  }
+
+  .message {
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(255, 68, 202);
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0);
+    opacity: 0;
+    animation: fadeInOut 5s forwards;
+    z-index: 10;
+  }
+
+  .message-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(255, 68, 202);
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 25px 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: fadeInOut 5s forwards;
+    z-index: 12;
+  }
+
+  @keyframes fadeInOut {
+    0% {opacity: 0; transform: translate(-50%, -60%);}
+    10% {opacity: 1; transform: translate(-50%, -50%);}
+    90% {opacity: 1;}
+    100% {opacity: 0; transform: translate(-50%, -40%);}
+  }
+
+  .popup-img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    opacity: 0;
+    animation: fadeImg 5s forwards;
+    z-index: 9;
+  }
+
+  @keyframes fadeImg {
+    0% {opacity: 0; transform: translate(-50%, -60%) scale(0.8);}
+    10% {opacity: 1; transform: translate(-50%, -50%) scale(1);}
+    90% {opacity: 1;}
+    100% {opacity: 0; transform: translate(-50%, -40%) scale(1);}
+  }
+
+  .video-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #ff6b9a;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s;
+    z-index: 15;
+  }
+
+  .video-btn:hover {
+    transform: scale(1.1);
+    background-color: #ff4d88;
+  }
+
+  .video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+  }
+
+  .video-modal video {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.3);
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: #ff6b9a;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+  <div class="heart" id="top" data-img="img1.png" data-text="Mirate mar, eres hermosisima ✨"></div>
+  <div class="heart" id="left" data-img="img2.png" data-text="Me gustan mucho tus ojitos :3"></div>
+  <div class="heart" id="right" data-img="img3.png" data-text="Eres la mas linda cuando sonries 💖"></div>
+  <div class="heart" id="bottom" data-img="img4.jpg" data-text="Prometo protegerte con mi alma y cuerpo 💕"></div>
+  <div class="heart" id="center"></div>
+
+  <audio id="musica" loop>
+    <source src="musica.m4a" type="audio/mp4">
+  </audio>
+  <button class="video-btn">▶️</button>
+  <div class="video-modal" id="videoModal">
+    <button class="close-btn">✖</button>
+    <video id="videoPlayer" controls>
+      <source src="Mar.mp4" type="video/mp4">
+      Tu navegador no soporta video.
+    </video>
+  </div>
+
+  <script>
+    const frasesCentrales = [
+      "Siempre logras alegrarme el dia 💫",
+      "Tu amistad me hace feliz siempre 🌷",
+      "Eres única y especial 💕",
+      "Gracias por ser tú misma conmigo 🌻",
+      "Eres una persona maravillosa marcita 💖",
+      "Tu amistad vale más que mil tesoros y mil estrellas ✨",
+      "Cada risa contigo se vuelve recuerdo eterno 🌷",
+      "Gracias por existir en mi vida piciosa 🌙",
+      "Tu corazón es tan hermoso como la nebulosa corazón ⭐"
+    ];
+
+    function showMessage(text, center = false) {
+      const msg = document.createElement('div');
+      msg.className = center ? 'message-center' : 'message';
+      msg.textContent = text;
+      document.body.appendChild(msg);
+      setTimeout(() => msg.remove(), 5000);
+    }
+
+    function showImage(src) {
+      const img = document.createElement('img');
+      img.className = 'popup-img';
+      img.src = src;
+      document.body.appendChild(img);
+      setTimeout(() => img.remove(), 5000);
+    }
+
+    const musica = document.getElementById('musica');
+    document.body.addEventListener('click', () => {
+      musica.play().catch(() => {});
+    }, { once: true });
+
+    document.querySelectorAll('.heart:not(#center)').forEach(heart => {
+      heart.addEventListener('click', () => {
+        const img = heart.dataset.img || '';
+        const text = heart.dataset.text || '';
+        if (img) showImage(img);
+        if (text) showMessage(text);
+      });
+    });
+
+    const center = document.getElementById('center');
+    center.addEventListener('click', () => {
+      const frase = frasesCentrales[Math.floor(Math.random() * frasesCentrales.length)];
+      showMessage(frase, true);
+    });
+
+    const videoBtn = document.querySelector('.video-btn');
+    const videoModal = document.getElementById('videoModal');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const closeBtn = document.querySelector('.close-btn');
+
+    videoBtn.addEventListener('click', () => {
+      musica.pause();
+      videoModal.style.display = 'flex';
+      videoPlayer.currentTime = 0;
+      videoPlayer.play();
+    });
+
+    closeBtn.addEventListener('click', () => {
+      videoModal.style.display = 'none';
+      videoPlayer.pause();
+    });
+  </script>
+</body>
+</html>
